@@ -594,6 +594,10 @@ video {
   margin-left: 600px;
 }
 
+.mr-\[100px\] {
+  margin-right: 100px;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -612,6 +616,82 @@ video {
 
 .mt-\[20px\] {
   margin-top: 20px;
+}
+
+.ml-\[100px\] {
+  margin-left: 100px;
+}
+
+.ml-\[1200px\] {
+  margin-left: 1200px;
+}
+
+.ml-\[60px\] {
+  margin-left: 60px;
+}
+
+.ml-\[670px\] {
+  margin-left: 670px;
+}
+
+.ml-\[800px\] {
+  margin-left: 800px;
+}
+
+.ml-\[1000px\] {
+  margin-left: 1000px;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
+.mt-\[1200px\] {
+  margin-top: 1200px;
+}
+
+.mt-\[500px\] {
+  margin-top: 500px;
+}
+
+.mt-\[200px\] {
+  margin-top: 200px;
+}
+
+.mt-\[600px\] {
+  margin-top: 600px;
+}
+
+.mt-\[300px\] {
+  margin-top: 300px;
+}
+
+.mt-\[250px\] {
+  margin-top: 250px;
+}
+
+.ml-\[1300px\] {
+  margin-left: 1300px;
+}
+
+.ml-\[1320px\] {
+  margin-left: 1320px;
+}
+
+.ml-\[1310px\] {
+  margin-left: 1310px;
+}
+
+.mt-\[260px\] {
+  margin-top: 260px;
+}
+
+.mt-\[240px\] {
+  margin-top: 240px;
+}
+
+.mt-\[245px\] {
+  margin-top: 245px;
 }
 
 .flex {
@@ -656,6 +736,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .flex-col {
@@ -724,6 +808,34 @@ video {
 
 .text-\[25px\] {
   font-size: 25px;
+}
+
+.text-\[100px\] {
+  font-size: 100px;
+}
+
+.text-\[50px\] {
+  font-size: 50px;
+}
+
+.text-\[30px\] {
+  font-size: 30px;
+}
+
+.text-\[15px\] {
+  font-size: 15px;
+}
+
+.text-\[209px\] {
+  font-size: 209px;
+}
+
+.text-\[20px\] {
+  font-size: 20px;
+}
+
+.text-\[40px\] {
+  font-size: 40px;
 }
 
 .font-bold {

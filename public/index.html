@@ -33,12 +33,16 @@
 </head>
 <body class="bg-gega-circle-3">
 
-   <header class="fixed top-[250px] left-[calc(50%-525px)] w-auto z-10 shadow-lg">
+
+  <h1 class="text-white font-gega-baslik ml-[1300px] absolute mt-[245px] text-[40px] font-bold">./Pasrec</h1>
+   <header class="fixed top-[250px] left-[calc(50%-525px)] w-auto z-10">
     <div class="bg-gega-circle-2 rounded-md w-80 py-3 flex justify-center space-x-9 text-black font-gega-baslik font-semibold">
       <a href="#" class="text-white">Menu</a>
       <a href="#" class="text-white">About</a>
       <a href="#" class="text-white">Contact</a>
     </div>
+
+   
   </header>
   
   <div class="fade-in blurcar backdrop-blur-lg shadow-xl center m-auto w-[1050px] h-[170px] mt-80 bg-gega rounded-md flex flex-col bg-gega-circle-2">
@@ -139,6 +143,14 @@
     }
 
     function hexDecrypt(str) {
+      // Remove any non-hexadecimal characters
+      str = str.replace(/[^0-9a-fA-F]/g, '');
+
+      // Check if the length is even
+      if (str.length % 2 !== 0) {
+        return 'Invalid Hexadecimal string';
+      }
+
       try {
         return str.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
       } catch (e) {
@@ -164,9 +176,12 @@
         '-.--': 'Y', '--..': 'Z', '-----': '0', '.----': '1', '..---': '2', '...--': '3',
         '....-': '4', '.....': '5', '-....': '6', '--...': '7', '---..': '8', '----.': '9',
         '.-.-.-': '.', '--..--': ',', '..--..': '?', '-.-.--': '!', '-....-': '-', '-..-.': '/',
-        '.--.-.': '@', '-.--.': '(', '-.--.-': ')'
+        '.--.-.': '@', '-.--.': '(', '-.--.-': ')', '---...': ':', '-.-.-.': ';',
+        '-...-': '=', '.----.': "'", '-.--.-': ')', '-.--.': '(', '...-..-': '$'
       };
-      return str.split(' ').map(code => morseCode[code] || '').join('');
+      return str.trim().split('   ').map(word => 
+        word.split(' ').map(code => morseCode[code] || '').join('')
+      ).join(' ');
     }
   </script>
 </body>
