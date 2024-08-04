@@ -4,12 +4,155 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./css/styles.css" rel="stylesheet">
-</head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
 
-  <!-- npx tailwindcss -i ./input.css -o ./public/styles.css --watch  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-gega-circle-3">
+
+   <header class="fixed top-[250px] left-[calc(50%-525px)] w-auto z-10 shadow-lg">
+    <div class="bg-green-500/70 rounded-md w-80 py-3 flex justify-center space-x-9 text-black font-gega-baslik font-semibold">
+      <a href="#" class="text-white">Menu</a>
+      <a href="#" class="text-white">About</a>
+      <a href="#" class="text-white">Contact</a>
+    </div>
+  </header>
+  
+  <div class="blurcar backdrop-blur-lg shadow-xl center m-auto w-[1050px] h-[200px] mt-80 bg-green-500/70 rounded-md flex flex-col">
+    <div class="w-full flex absolute ml-[600px] mt-[20px]">
+      <select id="encryptionMethod" class="bg-white text-green-500 py-2 px-4 rounded-md">
+        <option value="caesar">Caesar Cipher</option>
+        <option value="base64">Base64</option>
+        <option value="reverse">Reverse String</option>
+        <option value="rot13">ROT13</option>
+        <option value="hex">Hexadecimal</option>
+        <option value="atbash">Atbash Cipher</option>
+        <option value="morse">Morse Code</option>
+      </select>
+      <button onclick="decryptMessage()" class="bg-white text-green-500 py-2 px-4 rounded-md ml-4">Decrypt</button>
+    </div>
+
+    <h1 class="font-gega-baslik ml-12 text-white font-bold text-[25px] mt-[20px]">Type Your Privacy Password : </h1>
+    <div class="w-full flex justify-center mt-4">
+      <input id="passwordInput" type="text" class="blurtext bg-[white]/100 w-[90%] rounded-md p-[20px] backdrop-blur-[150px]" placeholder="Checker..">
+    </div>
+  
+  </div>
+  
+  <div class="backdrop-blur-lg shadow-xl center m-auto w-[1050px] h-[200px] mt-10 bg-green-500/70 rounded-md flex flex-col">
+    <h1 class="font-gega-baslik ml-12 text-white font-bold text-[25px] mt-[10px]">Result : </h1>
+      <div class="bg-white/100 w-[1010px] ml-5 mt-4 h-[120px] rounded-md">
+          <div id="result" class="result text-gega-gradient-1 py-3 ml-4 font-gega-baslik">
+              <!-- Decrypted message will be displayed here -->
+          </div>
+          <div id="method" class="result text-gega-gradient-1 py-3 ml-4 font-gega-baslik">
+              <!-- Decryption method will be displayed here -->
+          </div>
+      </div>
+  </div>
+
+  <script>
+    function decryptMessage() {
+      const input = document.getElementById('passwordInput').value;
+      const method = document.getElementById('encryptionMethod').value;
+      let result = '';
+
+      if (method === 'caesar') {
+        const shift = 3; // Example shift value for Caesar Cipher
+        result = caesarCipherDecrypt(input, shift);
+      } else if (method === 'base64') {
+        result = base64Decrypt(input);
+      } else if (method === 'reverse') {
+        result = reverseString(input);
+      } else if (method === 'rot13') {
+        result = rot13Decrypt(input);
+      } else if (method === 'hex') {
+        result = hexDecrypt(input);
+      } else if (method === 'atbash') {
+        result = atbashDecrypt(input);
+      } else if (method === 'morse') {
+        result = morseDecrypt(input);
+      }
+
+      document.getElementById('result').innerText = result;
+      document.getElementById('method').innerText = `Decryption Method: ${method.charAt(0).toUpperCase() + method.slice(1)}`;
+    }
+
+    function caesarCipherDecrypt(str, shift) {
+      return str.split('').map(char => {
+        const code = char.charCodeAt();
+        if (code >= 65 && code <= 90) {
+          return String.fromCharCode(((code - 65 - shift + 26) % 26) + 65);
+        } else if (code >= 97 && code <= 122) {
+          return String.fromCharCode(((code - 97 - shift + 26) % 26) + 97);
+        }
+        return char;
+      }).join('');
+    }
+
+    function base64Decrypt(str) {
+      try {
+        return atob(str);
+      } catch (e) {
+        return 'Invalid Base64 string';
+      }
+    }
+
+    function reverseString(str) {
+      return str.split('').reverse().join('');
+    }
+
+    function rot13Decrypt(str) {
+      return str.replace(/[A-Za-z]/g, function(c) {
+        return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".charAt(
+          "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm".indexOf(c)
+        );
+      });
+    }
+
+    function hexDecrypt(str) {
+      try {
+        return str.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
+      } catch (e) {
+        return 'Invalid Hexadecimal string';
+      }
+    }
+
+    function atbashDecrypt(str) {
+      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+      const reverseAlphabet = 'ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba';
+      return str.split('').map(char => {
+        const index = alphabet.indexOf(char);
+        return index > -1 ? reverseAlphabet[index] : char;
+      }).join('');
+    }
+
+    function morseDecrypt(str) {
+      const morseCode = {
+        '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F',
+        '--.': 'G', '....': 'H', '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L',
+        '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P', '--.-': 'Q', '.-.': 'R',
+        '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X',
+        '-.--': 'Y', '--..': 'Z', '-----': '0', '.----': '1', '..---': '2', '...--': '3',
+        '....-': '4', '.....': '5', '-....': '6', '--...': '7', '---..': '8', '----.': '9',
+        '.-.-.-': '.', '--..--': ',', '..--..': '?', '-.-.--': '!', '-....-': '-', '-..-.': '/',
+        '.--.-.': '@', '-.--.': '(', '-.--.-': ')'
+      };
+      return str.split(' ').map(code => morseCode[code] || '').join('');
+    }
+  </script>
 </body>
 </html>
