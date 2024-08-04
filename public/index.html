@@ -19,6 +19,16 @@
     .hidden {
       display: none;
     }
+    
+    /* Custom Tailwind classes */
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .fade-in.show {
+      opacity: 1;
+    }
   </style>
 </head>
 <body class="bg-gega-circle-3">
@@ -31,7 +41,7 @@
     </div>
   </header>
   
-  <div class="blurcar backdrop-blur-lg shadow-xl center m-auto w-[1050px] h-[170px] mt-80 bg-gega rounded-md flex flex-col bg-gega-circle-2">
+  <div class="fade-in blurcar backdrop-blur-lg shadow-xl center m-auto w-[1050px] h-[170px] mt-80 bg-gega rounded-md flex flex-col bg-gega-circle-2">
     <div class="w-full flex absolute ml-[600px] mt-[20px]">
       <select id="encryptionMethod" class="bg-white text-gega-circle-2 py-2 px-4 rounded-md">
         <option value="caesar">Caesar Cipher</option>
@@ -49,22 +59,27 @@
     <div class="w-full flex justify-center mt-4">
       <input id="passwordInput" type="text" class="blurtext bg-[white]/100 w-[90%] rounded-md p-[20px] backdrop-blur-[150px]" placeholder="Checker..">
     </div>
-  
   </div>
   
-  <div class="backdrop-blur-lg shadow-xl center m-auto w-[1050px] h-[200px] mt-10 bg-gega-circle-2 rounded-md flex flex-col">
+  <div class="fade-in backdrop-blur-lg shadow-xl center m-auto w-[1050px] h-[200px] mt-10 bg-gega-circle-2 rounded-md flex flex-col">
     <h1 class="font-gega-baslik ml-12 text-white font-bold text-[25px] mt-[10px]">Result : </h1>
-      <div class="bg-white/100 w-[1010px] ml-5 mt-4 h-[120px] rounded-md">
-          <div id="result" class="result text-gega-gradient-1 py-3 ml-4 font-gega-baslik">
-              <!-- Decrypted message will be displayed here -->
-          </div>
-          <div id="method" class="result text-gega-gradient-1 py-3 ml-4 font-gega-baslik">
-              <!-- Decryption method will be displayed here -->
-          </div>
+    <div class="bg-white/100 w-[1010px] ml-5 mt-4 h-[120px] rounded-md">
+      <div id="result" class="result text-gega-gradient-1 py-3 ml-4 font-gega-baslik">
+        <!-- Decrypted message will be displayed here -->
       </div>
+      <div id="method" class="result text-gega-gradient-1 py-3 ml-4 font-gega-baslik">
+        <!-- Decryption method will be displayed here -->
+      </div>
+    </div>
   </div>
 
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        el.classList.add('show');
+      });
+    });
+
     function decryptMessage() {
       const input = document.getElementById('passwordInput').value;
       const method = document.getElementById('encryptionMethod').value;
