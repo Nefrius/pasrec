@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./css/styles.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .hidden {
+      display: none;
+    }
+    
+    /* Custom Tailwind classes */
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .fade-in.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gega-circle-3">
+
+
+  <!-- <h1 class="text-white font-gega-baslik ml-[1300px] absolute mt-[245px] text-[40px] font-bold">./Pasrec</h1> -->
+   <header class="fixed top-[250px] left-[calc(50%-525px)] w-auto z-10">
+    <div class="bg-gega-circle-2 rounded-md w-80 py-3 flex justify-center space-x-9 text-black font-gega-baslik font-semibold">
+      <a href="index.html" class="text-white">Menu</a>
+      <a href="about.html" class="text-white">About</a>
+      <a href="https://nefrius.vercel.app/index.html" class="text-white">Contact</a>
+    </div>
+
+   
+  </header>
+  
+
+
+  <div class="space-y-4 fade-in blurcar backdrop-blur-lg shadow-xl center m-auto w-[1050px] h-[340px] mt-80 bg-gega rounded-md flex flex-col bg-gega-circle-2/40">
+    
+    <div class="bg-slate-100/20 mt-4 py-2 ml-3 rounded-md mr-3">
+        <h1 class="font-gega-baslik ml-12 text-white font-bold text-[25px] mt-[5px]">What Does The Site Do? </h1>
+        <h3 class="font-gega-baslik ml-12 text-white/80 font-semibold text-[15px] mt-[10px]">The text you enter is encrypted with the encryption tool owned by the site.</h1>    
+    </div>
+
+    <div class="bg-slate-100/20 mt-4 py-2 ml-3 rounded-md mr-3">
+        <h1 class="font-gega-baslik ml-12 text-white font-bold text-[25px] mt-[5px]">Which Artificial Intelligence Was Used? </h1>
+        <h3 class="font-gega-baslik ml-12 text-white/80 font-semibold text-[15px] mt-[10px]">The "PASREC" password cracking artificial intelligence, which we produced specifically for our site, was used.</h1>    
+    </div>
+
+    <div class="bg-slate-100/20 mt-4 py-2 ml-3 rounded-md mr-3">
+        <h1 class="font-gega-baslik ml-12 text-white font-bold text-[25px] mt-[5px]">Which Coding Language Was Used? </h1>
+        <h3 class="font-gega-baslik ml-12 text-white/80 font-semibold text-[15px] mt-[10px]">Html-Tailwind-Node.js-Javascript</h1>    
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        el.classList.add('show');
+      });
+    });
+
+  </script>
+</body>
+</html>
